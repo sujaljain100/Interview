@@ -2,6 +2,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./inter.css";
 
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://127.0.0.1:8000";
+
 const InterviewSession = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -66,7 +70,7 @@ const InterviewSession = () => {
   const evaluateCurrentAnswer = async () => {
 
     const response = await fetch(
-      "http://127.0.0.1:8000/api/interview/evaluate",
+      `${API_URL}/api/interview/evaluate`,
       {
         method: "POST",
 

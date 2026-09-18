@@ -1,14 +1,23 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 const AuthContext = createContext(null);
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://127.0.0.1:8000";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const token = localStorage.getItem("interviewiq_token");
+  const token = localStorage.getItem(
+    "interviewiq_token"
+  );
 
   const fetchCurrentUser = async () => {
     if (!token) {
@@ -27,16 +36,27 @@ export const AuthProvider = ({ children }) => {
       );
 
       if (!response.ok) {
-        localStorage.removeItem("interviewiq_token");
+        localStorage.removeItem(
+          "interviewiq_token"
+        );
+
         setUser(null);
         return;
       }
 
       const data = await response.json();
+
       setUser(data.user);
     } catch (error) {
-      console.error("Authentication error:", error);
-      localStorage.removeItem("interviewiq_token");
+      console.error(
+        "Authentication error:",
+        error
+      );
+
+      localStorage.removeItem(
+        "interviewiq_token"
+      );
+
       setUser(null);
     } finally {
       setLoading(false);
@@ -52,9 +72,11 @@ export const AuthProvider = ({ children }) => {
       `${API_URL}/api/auth/login`,
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
           email,
           password,
@@ -89,9 +111,11 @@ export const AuthProvider = ({ children }) => {
       `${API_URL}/api/auth/signup`,
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
           name,
           email,

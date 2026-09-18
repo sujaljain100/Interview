@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./interview.css";
 
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://127.0.0.1:8000";
+
 const Interview = () => {
   const navigate = useNavigate();
 
@@ -124,7 +128,7 @@ const Interview = () => {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/interview/questions",
+        `${API_URL}/api/interview/questions`,
         {
           method: "POST",
           headers: {
