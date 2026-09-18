@@ -1,0 +1,37 @@
+/* Signup-specific terms link */
+
+.terms-link {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.terms-link:hover {
+  text-decoration: underline;
+}
+
+/* Slightly compact signup card on desktop */
+
+@media (min-width: 901px) {
+  .auth-card:has(#confirm-password) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .auth-card:has(#confirm-password) .auth-header {
+    margin-bottom: 24px;
+  }
+
+  .auth-card:has(#confirm-password) .auth-form {
+    gap: 16px;
+  }
+
+  .auth-card:has(#confirm-password) .divider {
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+
+  .auth-card:has(#confirm-password) .auth-switch {
+    margin-top: 22px;
+  }
+}
